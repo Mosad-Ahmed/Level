@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ليفيل لوكيشن | AMAKEN PHOTOGRAPHY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Cairo', sans-serif; }
+        body { background-color: #fcfbf9; color: #1a1a1a; user-select: none; }
+        img { -webkit-user-drag: none; user-drag: none; }
+       .no-scrollbar::-webkit-scrollbar { display: none; }
+       .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+       .fade-in { animation: fadeIn 0.5s ease-in; }
+       .active-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #c5a880;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false" class="overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/70 border-b border-[#c5a880]/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="assets/logo.jpg" alt="Logo" class="w-12 h-12 object-cover rounded-lg" draggable="false">
+                <span class="text-xl font-bold tracking-wide">AMAKEN PHOTOGRAPHY</span>
+            </div>
+            <a href="https://wa.me/201065234640" target="_blank" class="hidden sm:flex items-center gap-2 bg-[#c5a880] text-white px-5 py-2 rounded-full hover:bg-[#b89570] transition-all duration-300">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                تواصل معنا
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex items-center justify-center">
+        <img src="decor/1.jpg" alt="Hero" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="relative z-10 text-center text-white px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 fade-in">اجمد لوكيشن فى مدينة نصر</h1>
+            <p class="text-2xl md:text-3xl text-[#c5a880] font-semibold fade-in">ليفيل لوكيشن</p>
+        </div>
+    </section>
+
+    <!-- Floating Tabs -->
+    <nav id="floating-tabs" class="sticky top-16 z-40 bg-[#fcfbf9]/95 backdrop-blur-md border-b border-[#c5a880]/20 opacity-0 transition-opacity duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="tabs-container" class="flex gap-6 overflow-x-auto no-scrollbar py-4"></div>
+        </div>
+    </nav>
+
+    <!-- Albums Container -->
+    <main id="albums-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+        <!-- Skeleton Loaders -->
+        <div id="skeleton" class="space-y-16">
+            <div class="space-y-4">
+                <div class="h-8 w-48 bg-[#f5f3f0] rounded animate-pulse"></div>
+                <div class="flex gap-4 overflow-hidden">
+                    <div class="flex-shrink-0 w-64 h-96 bg-[#f5f3f0] rounded-xl animate-pulse"></div>
+                    <div class="flex-shrink-0 w-64 h-96 bg-[#f5f3f0] rounded-xl animate-pulse"></div>
+                    <div class="flex-shrink-0 w-64 h-96 bg-[#f5f3f0] rounded-xl animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- WhatsApp Fixed Button Mobile -->
+    <a href="https://wa.me/201065234640" target="_blank" class="fixed bottom-6 left-6 sm:hidden z-50 bg-[#25D366] text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 hover:scale-105 transition-transform duration-300">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        دردش على واتساب
+    </a>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl hidden items-center justify-center p-4">
+        <button id="lightbox-close" class="absolute top-4 left-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <button id="lightbox-prev" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+        <button id="lightbox-next" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain fade-in" draggable="false">
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#f5f3f0] border-t border-[#c5a880]/20 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-600">
+            <p>© 2026 شركة أماكن - ‏AMAKEN PHOTOGRAPHY. جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+<script>
+// Config
+const ALBUMS = [
+    { folder: 'decor', name: '✨ الديكورات', maxImages: 55 },
+    { folder: 'album1', name: '📸 جلسات 1', maxImages: 100 },
+    { folder: 'album3', name: '📸 جلسات 3', maxImages: 100 }
+];
+
+const EXTENSIONS = ['.jpg', '.jpeg'];
+let allImages = {};
+let currentLightboxAlbum = null;
+let currentLightboxIndex = 0;
+
+// Test image source with fallback extensions
+function testImageSrc(folder, num) {
+    return new Promise((resolve) => {
+        let extIndex = 0;
+        const tryNext = () => {
+            if (extIndex >= EXTENSIONS.length) return resolve(null);
+            const img = new Image();
+            const src = `${folder}/${num}${EXTENSIONS[extIndex]}`;
+            img.onload = () => resolve(src);
+            img.onerror = () => { extIndex++; tryNext(); };
+            img.src = src;
+        };
+        tryNext();
+    });
+}
+
+// Handle image error - hide parent card
+function handleImageError(img) {
+    const card = img.closest('.album-card');
+    if (card) card.style.display = 'none';
+}
+
+// Discover albums in parallel
+async function discoverAlbums() {
+    const results = await Promise.all(ALBUMS.map(async (album) => {
+        const images = [];
+        const promises = [];
+        for (let i = 1; i <= album.maxImages; i++) {
+            promises.push(testImageSrc(album.folder, i));
+        }
+        const srcs = await Promise.all(promises);
+        srcs.forEach(src => { if (src) images.push(src); });
+        return {...album, images };
+    }));
+
+    // Filter empty albums
+    return results.filter(album => album.images.length > 0);
+}
+
+// Render album section
+function renderAlbum(album) {
+    const section = document.createElement('section');
+    section.id = `album-${album.folder}`;
+    section.className = 'album-section';
+
+    section.innerHTML = `
+        <h2 class="text-3xl font-bold mb-6 text-[#1a1a1a]">${album.name}</h2>
+        <div class="relative">
+            <div class="carousel-container overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing" data-folder="${album.folder}">
+                <div class="carousel-track flex gap-4 pb-4"></div>
+            </div>
+        </div>
+    `;
+
+    const track = section.querySelector('.carousel-track');
+
+    // Triple the images for infinite effect
+    const images = [...album.images,...album.images,...album.images];
+    images.forEach((src, idx) => {
+        const card = document.createElement('div');
+        card.className = 'album-card flex-shrink-0 w-64 md:w-80 aspect-[2/3] bg-[#f5f3f0] rounded-xl overflow-hidden shadow-lg hover:scale-105 hover:shadow-2xl hover:ring-1 hover:ring-[#c5a880]/30 transition-all duration-300 cursor-pointer';
+        card.innerHTML = `
+            <div class="w-full h-full bg-[#fcfbf9] backdrop-blur-sm flex items-center justify-center p-2">
+                <img src="${src}" alt="" class="max-w-full max-h-full object-contain fade-in" draggable="false" onerror="handleImageError(this)">
+            </div>
+        `;
+        card.onclick = () => openLightbox(album.folder, idx % album.images.length);
+        track.appendChild(card);
+    });
+
+    document.getElementById('albums-container').appendChild(section);
+    setupInfiniteCarousel(section.querySelector('.carousel-container'), album.images.length);
+}
+
+// Setup infinite carousel with inertia drag
+function setupInfiniteCarousel(container, originalLength) {
+    const track = container.querySelector('.carousel-track');
+    let isDown = false;
+    let startX, scrollLeft, velocity = 0, lastX, lastTime;
+    let animationId;
+
+    // Jump to middle on load
+    setTimeout(() => {
+        const itemWidth = track.children[0].offsetWidth + 16;
+        container.scrollLeft = itemWidth * originalLength;
+    }, 100);
+
+    // Infinite scroll logic
+    container.addEventListener('scroll', () => {
+        const itemWidth = track.children[0].offsetWidth + 16;
+        const maxScroll = itemWidth * originalLength;
+        const minScroll = itemWidth * (originalLength - 1);
+
+        if (container.scrollLeft <= minScroll) {
+            container.scrollLeft += maxScroll;
+        } else if (container.scrollLeft >= maxScroll * 2) {
+            container.scrollLeft -= maxScroll;
+        }
+    });
+
+    // Mouse/Touch drag with inertia
+    const startDrag = (e) => {
+        isDown = true;
+        container.classList.add('cursor-grabbing');
+        startX = (e.pageX || e.touches[0].pageX) - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+        lastX = startX;
+        lastTime = Date.now();
+        velocity = 0;
+        if (animationId) cancelAnimationFrame(animationId);
+    };
+
+    const moveDrag = (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = (e.pageX || e.touches[0].pageX) - container.offsetLeft;
+        const walk = (x - startX) * 2;
+        container.scrollLeft = scrollLeft - walk;
+
+        // Calculate velocity
+        const now = Date.now();
+        const dt = now - lastTime;
+        if (dt > 0) {
+            velocity = (lastX - x) / dt * 16;
+            lastX = x;
+            lastTime = now;
+        }
+    };
+
+    const endDrag = () => {
+        isDown = false;
+        container.classList.remove('cursor-grabbing');
+
+        // Inertia animation
+        const inertia = () => {
+            if (Math.abs(velocity) < 0.5) return;
+            container.scrollLeft += velocity;
+            velocity *= 0.95;
+            animationId = requestAnimationFrame(inertia);
+        };
+        inertia();
+    };
+
+    container.addEventListener('mousedown', startDrag);
+    container.addEventListener('mousemove', moveDrag);
+    container.addEventListener('mouseup', endDrag);
+    container.addEventListener('mouseleave', endDrag);
+    container.addEventListener('touchstart', startDrag);
+    container.addEventListener('touchmove', moveDrag);
+    container.addEventListener('touchend', endDrag);
+}
+
+// Render tabs
+function renderTabs(albums) {
+    const tabsContainer = document.getElementById('tabs-container');
+    albums.forEach((album, idx) => {
+        const tab = document.createElement('button');
+        tab.className = `tab relative text-sm md:text-base font-semibold whitespace-nowrap px-2 py-1 transition-colors duration-300 ${idx === 0? 'text-[#c5a880] active-tab' : 'text-gray-600 hover:text-[#c5a880]'}`;
+        tab.textContent = album.name;
+        tab.onclick = () => {
+            document.getElementById(`album-${album.folder}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            updateActiveTab(tab);
+        };
+        tabsContainer.appendChild(tab);
+    });
+}
+
+// Update active tab
+function updateActiveTab(activeTab) {
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('text-[#c5a880]', 'active-tab');
+        tab.classList.add('text-gray-600');
+    });
+    activeTab.classList.remove('text-gray-600');
+    activeTab.classList.add('text-[#c5a880]', 'active-tab');
+}
+
+// Lightbox functions
+function openLightbox(folder, index) {
+    currentLightboxAlbum = folder;
+    currentLightboxIndex = index;
+    const album = allImages[folder];
+    document.getElementById('lightbox-img').src = album.images[index];
+    document.getElementById('lightbox').classList.remove('hidden');
+    document.getElementById('lightbox').classList.add('flex');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.add('hidden');
+    document.getElementById('lightbox').classList.remove('flex');
+    document.body.style.overflow = '';
+}
+
+function navigateLightbox(direction) {
+    const album = allImages[currentLightboxAlbum];
+    currentLightboxIndex = (currentLightboxIndex + direction + album.images.length) % album.images.length;
+    document.getElementById('lightbox-img').src = album.images[currentLightboxIndex];
+}
+
+// Lightbox events
+document.getElementById('lightbox-close').onclick = closeLightbox;
+document.getElementById('lightbox-prev').onclick = () => navigateLightbox(-1);
+document.getElementById('lightbox-next').onclick = () => navigateLightbox(1);
+document.getElementById('lightbox').onclick = (e) => {
+    if (e.target.id === 'lightbox') closeLightbox();
+};
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+    }
+});
+
+// Touch swipe for lightbox
+let touchStartX = 0;
+document.getElementById('lightbox').addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+});
+document.getElementById('lightbox').addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+        navigateLightbox(diff > 0? 1 : -1);
+    }
+});
+
+// Prevent pinch zoom
+document.addEventListener('touchmove', (e) => {
+    if (e.scale!== 1) e.preventDefault();
+}, { passive: false });
+
+// Scroll spy for tabs
+function setupScrollSpy() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const folder = entry.target.id.replace('album-', '');
+                const tab = Array.from(document.querySelectorAll('.tab')).find(t =>
+                    t.textContent.includes(allImages[folder].name.replace(/✨|📸/g, '').trim())
+                );
+                if (tab) updateActiveTab(tab);
+            }
+        });
+    }, { threshold: 0.3, rootMargin: '-100px 0px -50% 0px' });
+
+    document.querySelectorAll('.album-section').forEach(section => observer.observe(section));
+}
+
+// Show/hide floating tabs on scroll
+window.addEventListener('scroll', () => {
+    const tabs = document.getElementById('floating-tabs');
+    if (window.scrollY > window.innerHeight - 200) {
+        tabs.style.opacity = '1';
+    } else {
+        tabs.style.opacity = '0';
+    }
+});
+
+// Init
+async function init() {
+    const albums = await discoverAlbums();
+
+    // Remove skeleton
+    document.getElementById('skeleton').remove();
+
+    if (albums.length === 0) {
+        document.getElementById('albums-container').innerHTML = '<p class="text-center text-gray-500 py-20">لا توجد ألبومات متاحة حالياً</p>';
+        return;
+    }
+
+    // Store in global
+    albums.forEach(album => {
+        allImages[album.folder] = album;
+    });
+
+    // Render
+    albums.forEach(renderAlbum);
+    renderTabs(albums);
+    setupScrollSpy();
+}
+
+init();
+</script>
+
+</body>
+</html>
